@@ -1,3 +1,3 @@
 rootProject.name = "SternalBoard"
 
-include("api", "plugin")
+include("api", "config", "plugin")

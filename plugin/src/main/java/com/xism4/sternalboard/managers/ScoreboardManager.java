@@ -1,5 +1,6 @@
 package com.xism4.sternalboard.managers;
 
+import com.xism4.sternalboard.BukkitConfigurationImpl;
 import com.xism4.sternalboard.Scoreboards;
 import com.xism4.sternalboard.SternalBoard;
 import com.xism4.sternalboard.SternalBoardPlugin;
@@ -28,11 +29,10 @@ public class ScoreboardManager {
     }
 
     public void init() {
-        FileConfiguration config = plugin.getConfig();
-        String scoreboardMode = config.getString("settings.mode", "NORMAL")
-                .toUpperCase(Locale.ROOT);
+        FileConfiguration config = plugin.getConfig(); //change to elytrium config
+        String scoreboardMode = BukkitConfigurationImpl.IMP.MODE.toUpperCase(Locale.ROOT);
         String intervalUpdatePath = "settings.scoreboard-interval-update";
-        int updateTime = config.getInt(intervalUpdatePath);
+        int updateTime = BukkitConfigurationImpl.IMP.SCOREBOARD_INTERVAL_UPDATE;
 
         if (updateTime <= 0) {
             config.set(intervalUpdatePath, 20);

@@ -13,6 +13,7 @@ repositories {
 
 dependencies {
     api(project(":api"))
+    api(project(":config"))
     compileOnly(libs.spigot)
     compileOnly(libs.placeholder)
 
@@ -30,6 +31,7 @@ dependencies {
 tasks {
     shadowJar {
         relocate("net.byteflux.libby", "com.xism4.sternalboard.libs")
+        relocate("net.elytrium.serializer", "com.xism4.sternalboard.libs.serializer")
         relocate("net.kyori", "com.xism4.sternalboard.libs.kyori")
         archiveBaseName.set("SternalBoard")
         destinationDirectory.set(file("$rootDir/bin/"))
