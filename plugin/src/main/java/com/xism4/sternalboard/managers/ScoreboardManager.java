@@ -107,13 +107,11 @@ public class ScoreboardManager {
     }
 
     private void processPermissionScoreboard(SternalBoard handler) {
-        FileConfiguration configuration = plugin.getConfig();
-        Set<String> permissions = Objects.requireNonNull(plugin.getConfig().getConfigurationSection("scoreboard-permission"))
-                .getKeys(true);
+        Set<String> permissions = BukkitConfigurationImpl.IMP.PERMISSION_SCOREBOARD_LINES;
 
         String permissionNode;
         for (String key : permissions) {
-            permissionNode = configuration.getString("scoreboard-permission." + key + ".node");
+            permissionNode = BukkitConfigurationImpl.IMP.NODE;
             if (permissionNode == null) continue;
             if (handler.getPlayer().hasPermission(permissionNode)) {
                 break;

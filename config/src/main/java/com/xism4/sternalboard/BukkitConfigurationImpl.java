@@ -10,6 +10,7 @@ import org.checkerframework.checker.units.qual.C;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 public class BukkitConfigurationImpl extends SafeYamlSerializable {
 
@@ -50,7 +51,7 @@ public class BukkitConfigurationImpl extends SafeYamlSerializable {
                     "NORMAL - scoreboard for all players"
             ),
             @CommentValue(
-                    "WORLD-scoreboard per world, u can configure in scoreboard - world section"
+                    "WORLD-scoreboard per world, you can configure in scoreboard - world section"
             ),
             @CommentValue(
                     "PERMISSION-scoreboard per permission, you can configure in scoreboard - permission section"
@@ -115,11 +116,35 @@ public class BukkitConfigurationImpl extends SafeYamlSerializable {
                     "Blacklisted worlds (Scoreboard will not appear)"
             )
     })
-
     public List<String> WORLD_BLACKLIST = Arrays.asList(
             "world1",
             "world_nether",
             "world_the_end"
     );
+    @Comment(value = {
+            @CommentValue("If permission does not exist or is not configured, will use scoreboard section"),
+            @CommentValue("Remember if you use this mode, you need to add permissions to your permission plugin"),
+            @CommentValue("Example: sternalboard.admin, sternalboard.mod, sternalboard.dev, sternalboard.owner"),
+            @CommentValue("If you have op, you will see all scoreboards, remember deny nodes in your permission plugin")
+            })
 
-}
+   public String NODE = "node";
+        public String title = "title";
+      public Set<String> PERMISSION_SCOREBOARD_LINES = (Set<String>) Arrays.asList(
+                "&8&m+-------------------+",
+                "",
+                "&a&l▼ &bData:",
+                "&f● &7Nick: &b%player_name%",
+                "&f● &7Rank: &b%vault_rank%",
+                "&f● &7Coins: &e%vault_eco_balance_formatted%",
+                "",
+                "&a&l▼ &bExample:",
+                "&f● &7Lobby: &b#1",
+                "&f● &7Ping: &b%player_ping%",
+                "&f● &7Players: &b%bungee_total%",
+                "",
+                "&f● &fIP: &bplay.yournetwork.com"
+        );
+
+    }
+
