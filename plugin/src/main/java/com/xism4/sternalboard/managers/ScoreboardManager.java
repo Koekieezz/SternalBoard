@@ -29,15 +29,14 @@ public class ScoreboardManager {
     }
 
     public void init() {
-        FileConfiguration config = plugin.getConfig(); //change to elytrium config
         String scoreboardMode = BukkitConfigurationImpl.IMP.MODE.toUpperCase(Locale.ROOT);
-        String intervalUpdatePath = "settings.scoreboard-interval-update";
         int updateTime = BukkitConfigurationImpl.IMP.SCOREBOARD_INTERVAL_UPDATE;
+        BukkitConfigurationImpl.IMP.save();
 
         if (updateTime <= 0) {
-            config.set(intervalUpdatePath, 20);
+            BukkitConfigurationImpl.IMP.save();
             updateTime = 20;
-            plugin.saveConfig();
+            BukkitConfigurationImpl.IMP.save();
         }
 
         if (plugin.isAnimationEnabled()) {
@@ -46,8 +45,7 @@ public class ScoreboardManager {
 
         updateTask = plugin.getServer().getScheduler().runTaskTimerAsynchronously(plugin, () -> {
 
-            ConfigurationSection defaultSection = plugin.getConfig()
-                    .getConfigurationSection("settings.scoreboard");
+            String defaultSection = BukkitConfigurationImpl.IMP.MODE;
 
             boardHandlerMap.forEach((context, handler) -> {
                 switch (scoreboardMode) {
@@ -74,7 +72,7 @@ public class ScoreboardManager {
         if (plugin.isWorldEnabled() && plugin.isAnimationEnabled() && config.getInt("settings.scoreboard.update") != 0)
             return;
 
-        Scoreboards.updateFromSection(plugin, handler, defaultSection);
+        Scoreboards.updateFromSection(plugin, handler, String.valueOf(defaultSection));
         boardHandlerMap.put(player.getUniqueId(), handler);
     }
 
@@ -109,7 +107,7 @@ public class ScoreboardManager {
     }
 
     // STATIC BOARD FEATURES
-    private void processWorldScoreboard(SternalBoard handler, ConfigurationSection defaultSection) {
+    private void processWorldScoreboard(SternalBoard handler, String defaultSection) {
         String worldName = handler.getPlayer().getWorld().getName();
 
         ConfigurationSection worldSection = plugin.getConfig()
@@ -120,10 +118,10 @@ public class ScoreboardManager {
             return;
         }
 
-        Scoreboards.updateFromSection(plugin, handler, worldSection);
+        Scoreboards.updateFromSection(plugin, handler, String.valueOf(worldSection));
     }
 
-    private void processPermissionScoreboard(SternalBoard handler, ConfigurationSection defaultSection) {
+    private void processPermissionScoreboard(SternalBoard handler, String defaultSection) {
         FileConfiguration configuration = plugin.getConfig();
         Set<String> permissions = Objects.requireNonNull(plugin.getConfig().getConfigurationSection("scoreboard-permission"))
                 .getKeys(true);
@@ -144,7 +142,7 @@ public class ScoreboardManager {
             return;
         }
 
-        Scoreboards.updateFromSection(plugin, handler, permissionSection);
+        Scoreboards.updateFromSection(plugin, handler, String.valueOf(permissionSection));
     }
 
     /**
