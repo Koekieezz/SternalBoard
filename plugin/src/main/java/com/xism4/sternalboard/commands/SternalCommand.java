@@ -91,14 +91,14 @@ public class SternalCommand implements CommandExecutor {
 
     private void reloadSubcommand(CommandSender sender) {
         if (sender.hasPermission("sternalboard.reload")){
-            plugin.getRawConfig().reload();
+            BukkitConfigurationImpl.IMP.reload();
             this.config = plugin.getConfig();
             plugin.setAnimateScoreboard(
                     BukkitConfigurationImpl.IMP.ANIMATED_BOARD
             );
             plugin.getScoreboardManager().reload();
             if (plugin.isAnimationEnabled()) {
-                plugin.getRawAnimConfig().reload();
+                BukkitConfigurationImpl.IMP.reload();
                 if (plugin.getAnimationManager() != null) {
                     plugin.getAnimationManager().reload();
                 } else {
