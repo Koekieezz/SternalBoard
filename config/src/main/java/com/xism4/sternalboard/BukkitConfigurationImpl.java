@@ -105,11 +105,11 @@ public class BukkitConfigurationImpl extends SafeYamlSerializable {
 
     @Comment(value = {
             @CommentValue(
-                    "Should the scoreboard world blacklist be enabled"
+                    "Should the scoreboard blacklist worlds?"
             )
     })
-
     public boolean WORLD_BLACKLIST_ENABLED = false;
+
     @Comment(value = {
             @CommentValue(
                     "Blacklisted worlds (Scoreboard will not appear)"
@@ -121,4 +121,5 @@ public class BukkitConfigurationImpl extends SafeYamlSerializable {
             "world_nether",
             "world_the_end"
     );
+
 }
