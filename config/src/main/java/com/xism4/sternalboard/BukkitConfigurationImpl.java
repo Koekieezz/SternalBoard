@@ -103,4 +103,22 @@ public class BukkitConfigurationImpl extends SafeYamlSerializable {
             "&f● &fIP: &bplay.yournetwork.com"
     );
 
+    @Comment(value = {
+            @CommentValue(
+                    "Should the scoreboard world blacklist be enabled"
+            )
+    })
+
+    public boolean WORLD_BLACKLIST_ENABLED = false;
+    @Comment(value = {
+            @CommentValue(
+                    "Blacklisted worlds (Scoreboard will not appear)"
+            )
+    })
+
+    public List<String> WORLD_BLACKLIST = Arrays.asList(
+            "world1",
+            "world_nether",
+            "world_the_end"
+    );
 }

@@ -7,7 +7,6 @@ import com.xism4.sternalboard.SternalBoardPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -130,7 +129,7 @@ public class ScoreboardManager {
     public void setBoardAfterCheck(Player player) {
         ScoreboardManager manager = plugin.getScoreboardManager();
 
-        if (!plugin.getConfig().getBoolean("settings.world-blacklist.enabled")) {
+        if (!BukkitConfigurationImpl.IMP.WORLD_BLACKLIST_ENABLED) {
             if (manager.getBoardsHandler().containsKey(player.getUniqueId())) {
                 return;
             }
@@ -138,9 +137,9 @@ public class ScoreboardManager {
             manager.setScoreboard(player);
         }
 
-        @NotNull List<String> worldBlacklist = plugin.getConfig().getStringList(
-                "settings.world-blacklist.worlds"
-        );
+        //No need to check if world is null since player is always on a world
+        List<String> worldBlacklist = BukkitConfigurationImpl.IMP.WORLD_BLACKLIST;
+
 
         if (worldBlacklist.contains(player.getWorld().getName())) {
             manager.removeScoreboard(player);
