@@ -33,9 +33,8 @@ public class SternalBoardPlugin extends JavaPlugin {
         BukkitConfigurationImpl settings = new BukkitConfigurationImpl();
         settings.reload(this.getDataFolder().toPath());
         this.animConfig = new BukkitConfiguration(this, "animated-board");
-        this.config = new BukkitConfiguration(this, "config");
 
-        setAnimateScoreboard(config.get().getBoolean("settings.animated"));
+        setAnimateScoreboard(BukkitConfigurationImpl.IMP.ANIMATED_BOARD);
     }
 
     @Override
