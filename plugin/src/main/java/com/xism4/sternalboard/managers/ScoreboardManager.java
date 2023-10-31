@@ -5,7 +5,6 @@ import com.xism4.sternalboard.Scoreboards;
 import com.xism4.sternalboard.SternalBoard;
 import com.xism4.sternalboard.SternalBoardPlugin;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -43,25 +42,21 @@ public class ScoreboardManager {
             return;
         }
 
-        updateTask = plugin.getServer().getScheduler().runTaskTimerAsynchronously(plugin, () -> {
-
-            String defaultSection = BukkitConfigurationImpl.IMP.MODE;
-
-            boardHandlerMap.forEach((context, handler) -> {
-                switch (scoreboardMode) {
-                    case "WORLD":
-                        processWorldScoreboard(handler, defaultSection);
-                        break;
-                    case "PERMISSION":
-                        processPermissionScoreboard(handler, defaultSection);
-                        break;
-                    case "NORMAL":
-                    default:
-                        Scoreboards.updateFromSection(plugin, handler);
-                        break;
-                }
-            });
-        }, 0, updateTime).getTaskId();
+        updateTask = plugin.getServer().getScheduler().runTaskTimerAsynchronously(plugin, () ->
+                boardHandlerMap.forEach((context, handler) -> {
+            switch (scoreboardMode) {
+                case "WORLD":
+                    processWorldScoreboard(handler);
+                    break;
+                case "PERMISSION":
+                    processPermissionScoreboard(handler);
+                    break;
+                case "NORMAL":
+                default:
+                    Scoreboards.updateFromSection(plugin, handler);
+                    break;
+            }
+        }), 0, updateTime).getTaskId();
     }
 
     public void setScoreboard(Player player) {
@@ -106,24 +101,22 @@ public class ScoreboardManager {
     }
 
     // STATIC BOARD FEATURES
-    private void processWorldScoreboard(SternalBoard handler, String defaultSection) {
+    private void processWorldScoreboard(SternalBoard handler) {
         String worldName = handler.getPlayer().getWorld().getName();
 
         Scoreboards.updateFromSection(plugin, handler);
     }
 
-    private void processPermissionScoreboard(SternalBoard handler, String defaultSection) {
+    private void processPermissionScoreboard(SternalBoard handler) {
         FileConfiguration configuration = plugin.getConfig();
         Set<String> permissions = Objects.requireNonNull(plugin.getConfig().getConfigurationSection("scoreboard-permission"))
                 .getKeys(true);
 
         String permissionNode;
-        ConfigurationSection permissionSection = null;
         for (String key : permissions) {
             permissionNode = configuration.getString("scoreboard-permission." + key + ".node");
             if (permissionNode == null) continue;
             if (handler.getPlayer().hasPermission(permissionNode)) {
-                permissionSection = configuration.getConfigurationSection("scoreboard-permission." + key);
                 break;
             }
         }
