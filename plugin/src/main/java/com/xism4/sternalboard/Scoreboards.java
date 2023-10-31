@@ -8,12 +8,8 @@ import java.util.List;
 public class Scoreboards {
 
     public static void updateFromSection(
-            SternalBoardPlugin plugin, SternalBoard handler, String section
+            SternalBoardPlugin plugin, SternalBoard handler
     ) {
-        if (section == null) {
-            return;
-        }
-
 
        String title = BukkitConfigurationImpl.IMP.DEFAULT_SCOREBOARD_TITLE;
        List<String> lines = new ArrayList<>(BukkitConfigurationImpl.IMP.SCOREBOARD_LINES);

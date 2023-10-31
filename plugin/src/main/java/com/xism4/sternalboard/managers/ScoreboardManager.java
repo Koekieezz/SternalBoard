@@ -57,7 +57,7 @@ public class ScoreboardManager {
                         break;
                     case "NORMAL":
                     default:
-                        Scoreboards.updateFromSection(plugin, handler, defaultSection);
+                        Scoreboards.updateFromSection(plugin, handler);
                         break;
                 }
             });
@@ -67,12 +67,11 @@ public class ScoreboardManager {
     public void setScoreboard(Player player) {
         SternalBoard handler = new SternalBoard(player);
         FileConfiguration config = plugin.getConfig();
-        ConfigurationSection defaultSection = config.getConfigurationSection("settings.scoreboard");
 
         if (plugin.isWorldEnabled() && plugin.isAnimationEnabled() && config.getInt("settings.scoreboard.update") != 0)
             return;
 
-        Scoreboards.updateFromSection(plugin, handler, String.valueOf(defaultSection));
+        Scoreboards.updateFromSection(plugin, handler);
         boardHandlerMap.put(player.getUniqueId(), handler);
     }
 
@@ -114,11 +113,11 @@ public class ScoreboardManager {
                 .getConfigurationSection("scoreboard-world." + worldName);
 
         if (worldSection == null) {
-            Scoreboards.updateFromSection(plugin, handler, defaultSection);
+            Scoreboards.updateFromSection(plugin, handler);
             return;
         }
 
-        Scoreboards.updateFromSection(plugin, handler, String.valueOf(worldSection));
+        Scoreboards.updateFromSection(plugin, handler);
     }
 
     private void processPermissionScoreboard(SternalBoard handler, String defaultSection) {
@@ -138,11 +137,11 @@ public class ScoreboardManager {
         }
 
         if (permissionSection == null) {
-            Scoreboards.updateFromSection(plugin, handler, defaultSection);
+            Scoreboards.updateFromSection(plugin, handler);
             return;
         }
 
-        Scoreboards.updateFromSection(plugin, handler, String.valueOf(permissionSection));
+        Scoreboards.updateFromSection(plugin, handler);
     }
 
     /**
