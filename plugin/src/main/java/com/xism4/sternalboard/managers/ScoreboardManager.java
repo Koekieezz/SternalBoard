@@ -109,14 +109,6 @@ public class ScoreboardManager {
     private void processWorldScoreboard(SternalBoard handler, String defaultSection) {
         String worldName = handler.getPlayer().getWorld().getName();
 
-        ConfigurationSection worldSection = plugin.getConfig()
-                .getConfigurationSection("scoreboard-world." + worldName);
-
-        if (worldSection == null) {
-            Scoreboards.updateFromSection(plugin, handler);
-            return;
-        }
-
         Scoreboards.updateFromSection(plugin, handler);
     }
 
@@ -134,11 +126,6 @@ public class ScoreboardManager {
                 permissionSection = configuration.getConfigurationSection("scoreboard-permission." + key);
                 break;
             }
-        }
-
-        if (permissionSection == null) {
-            Scoreboards.updateFromSection(plugin, handler);
-            return;
         }
 
         Scoreboards.updateFromSection(plugin, handler);
