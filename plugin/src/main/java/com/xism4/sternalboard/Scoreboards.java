@@ -1,21 +1,22 @@
 package com.xism4.sternalboard;
 
 import com.xism4.sternalboard.utils.TextUtils;
-import org.bukkit.configuration.ConfigurationSection;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Scoreboards {
 
     public static void updateFromSection(
-            SternalBoardPlugin plugin, SternalBoard handler, ConfigurationSection section
+            SternalBoardPlugin plugin, SternalBoard handler, String section
     ) {
         if (section == null) {
             return;
         }
 
-        String title = section.getString("title");
-        List<String> lines = section.getStringList("lines");
+
+       String title = BukkitConfigurationImpl.IMP.DEFAULT_SCOREBOARD_TITLE;
+       List<String> lines = new ArrayList<>(BukkitConfigurationImpl.IMP.SCOREBOARD_LINES);
 
         if (title == null) {
             title = handler.getTitle();

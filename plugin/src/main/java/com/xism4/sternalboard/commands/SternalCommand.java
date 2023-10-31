@@ -94,7 +94,7 @@ public class SternalCommand implements CommandExecutor {
             plugin.getRawConfig().reload();
             this.config = plugin.getConfig();
             plugin.setAnimateScoreboard(
-                    BukkitConfigurationImpl.IMP.ANIMATED_SCOREBOARD
+                    BukkitConfigurationImpl.IMP.ANIMATED_BOARD
             );
             plugin.getScoreboardManager().reload();
             if (plugin.isAnimationEnabled()) {

@@ -5,8 +5,11 @@ import net.elytrium.serializer.SerializerConfig;
 import net.elytrium.serializer.annotations.Comment;
 import net.elytrium.serializer.annotations.CommentValue;
 import net.elytrium.serializer.annotations.Transient;
+import org.checkerframework.checker.units.qual.C;
 
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 
 public class BukkitConfigurationImpl extends SafeYamlSerializable {
 
@@ -38,7 +41,6 @@ public class BukkitConfigurationImpl extends SafeYamlSerializable {
             @CommentValue("If you have any problem, contact us in discord or report issue in GitHub section"),
             @CommentValue("Issues: https://github.com/ShieldCommunity/SternalBoard/issues")
     })
-    public boolean ANIMATED_SCOREBOARD = false;
 
     @Comment(value = {
             @CommentValue(
@@ -58,6 +60,13 @@ public class BukkitConfigurationImpl extends SafeYamlSerializable {
 
     @Comment(value = {
             @CommentValue(
+                    "Should the scoreboard be animated? This will be modified from another config"
+            )
+    })
+    public boolean ANIMATED_BOARD = false;
+
+    @Comment(value = {
+            @CommentValue(
                     "Scoreboard update interval, default 20 ticks"
             ),
             @CommentValue(
@@ -65,4 +74,33 @@ public class BukkitConfigurationImpl extends SafeYamlSerializable {
             )
     })
     public int SCOREBOARD_INTERVAL_UPDATE = 20;
+
+    @Comment(value = {
+            @CommentValue(
+                    "Scoreboard title"
+            )
+    })
+    public String DEFAULT_SCOREBOARD_TITLE = "&e&lSternal&f&lBoard";
+
+    @Comment(value = {
+            @CommentValue(
+                    "Lines for the scoreboard"
+            )
+    })
+    public List<String> SCOREBOARD_LINES = Arrays.asList(
+            "&8&m+-------------------+",
+            "",
+            "&a&l▼ &bData:",
+            "&f● &7Nick: &b%player_name%",
+            "&f● &7Rank: &b%vault_rank%",
+            "&f● &7Coins: &e%vault_eco_balance_formatted%",
+            "",
+            "&a&l▼ &bExample:",
+            "&f● &7Lobby: &b#1",
+            "&f● &7Ping: &b%player_ping%",
+            "&f● &7Players: &b%bungee_total%",
+            "",
+            "&f● &fIP: &bplay.yournetwork.com"
+    );
+
 }
