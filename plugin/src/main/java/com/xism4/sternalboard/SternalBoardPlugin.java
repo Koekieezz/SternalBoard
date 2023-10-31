@@ -58,7 +58,7 @@ public class SternalBoardPlugin extends JavaPlugin {
     }
 
     public boolean isWorldEnabled() {
-        return config.get().getBoolean("settings.scoreboard.world-blacklist.enabled");
+        return BukkitConfigurationImpl.IMP.WORLD_BLACKLIST_ENABLED;
     }
 
     public ScoreboardManager getScoreboardManager() {
