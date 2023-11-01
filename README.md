@@ -29,6 +29,7 @@ Lightweight & Async scoreboard based on FastBoard, implementing animations, pack
 * Mini-games support, such as "koths, skywars, bedwars"
 * Simple to use, for people who are relatively new to the industry
 * Ready to run on large servers, with no animation limits
+* Config built in [Elytrium](https://github.com/Elytrium/java-serializer) sytem that adds the option to serialize classes, implementes new configurations for older files, replace placeholders automatically and reduce boilerplate
 
 ## How to integrate
 If you want to integrate SternalBoard to your proyect, you can use Maven and Gradle:
