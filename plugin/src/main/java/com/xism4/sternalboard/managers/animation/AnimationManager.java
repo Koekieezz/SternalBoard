@@ -29,7 +29,6 @@ public class AnimationManager {
     }
 
     public void load() {
-        FileConfiguration config = plugin.getAnimConfig();
 
         if (!plugin.isAnimationEnabled()) {
             this.lines = null;

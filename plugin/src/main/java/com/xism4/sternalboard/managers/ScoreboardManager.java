@@ -60,9 +60,8 @@ public class ScoreboardManager {
 
     public void setScoreboard(Player player) {
         SternalBoard handler = new SternalBoard(player);
-        FileConfiguration config = plugin.getConfig();
 
-        if (plugin.isWorldEnabled() && plugin.isAnimationEnabled() && config.getInt("settings.scoreboard.update") != 0)
+        if (plugin.isWorldEnabled() && plugin.isAnimationEnabled() && StaticConfigurationImpl.IMP.SCOREBOARD_INTERVAL_UPDATE != 0)
             return;
 
         Scoreboards.updateFromSection(plugin, handler);

@@ -18,7 +18,6 @@ public class SternalCommand implements CommandExecutor {
 
     public SternalCommand(SternalBoardPlugin plugin) {
         this.plugin = plugin;
-        this.config = plugin.getConfig();
     }
 
     @Override
@@ -92,7 +91,6 @@ public class SternalCommand implements CommandExecutor {
     private void reloadSubcommand(CommandSender sender) {
         if (sender.hasPermission("sternalboard.reload")){
             StaticConfigurationImpl.IMP.reload();
-            this.config = plugin.getConfig();
             plugin.setAnimateScoreboard(
                     StaticConfigurationImpl.IMP.ANIMATED_BOARD
             );

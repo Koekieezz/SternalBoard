@@ -89,10 +89,6 @@ public class SternalBoardPlugin extends JavaPlugin {
     }
 
     // TODO 09/04/2023: review instance of FileConfiguration on reload class
-    @Override
-    public @NotNull FileConfiguration getConfig() {
-        return config.get();
-    }
 
     public void loadScoreboardMgr() {
         scoreboardManager = new ScoreboardManager(this);
