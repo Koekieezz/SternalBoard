@@ -73,18 +73,9 @@ public class SternalBoardPlugin extends JavaPlugin {
         return Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
     }
 
-    public BukkitConfiguration getRawAnimConfig() {
-        return animConfig;
-    }
-
     // TODO 09/04/2023: review instance of FileConfiguration on reload class
     public @NotNull FileConfiguration getAnimConfig() {
         return animConfig.get();
-    }
-
-
-    public @NotNull BukkitConfiguration getRawConfig() {
-        return config;
     }
 
     // TODO 09/04/2023: review instance of FileConfiguration on reload class
