@@ -91,17 +91,17 @@ public class StaticConfigurationImpl extends SafeYamlSerializable {
     public List<String> SCOREBOARD_LINES = Arrays.asList(
             "&8&m+-------------------+",
             "",
-            "&a&l▼ &bData:",
-            "&f● &7Nick: &b%player_name%",
-            "&f● &7Rank: &b%vault_rank%",
-            "&f● &7Coins: &e%vault_eco_balance_formatted%",
+            "&a&l &bData:",
+            "&f &7Nick: &b%player_name%",
+            "&f &7Rank: &b%vault_rank%",
+            "&f &7Coins: &e%vault_eco_balance_formatted%",
             "",
-            "&a&l▼ &bExample:",
-            "&f● &7Lobby: &b#1",
-            "&f● &7Ping: &b%player_ping%",
-            "&f● &7Players: &b%bungee_total%",
+            "&a&l &bExample:",
+            "&f &7Lobby: &b#1",
+            "&f &7Ping: &b%player_ping%",
+            "&f &7Players: &b%bungee_total%",
             "",
-            "&f● &fIP: &bplay.yournetwork.com"
+            "&f &fIP: &bplay.yournetwork.com"
     );
 
     @Comment(value = {
@@ -134,17 +134,17 @@ public class StaticConfigurationImpl extends SafeYamlSerializable {
     public Set<String> PERMISSION_SCOREBOARD_LINES = new LinkedHashSet<>(Arrays.asList(
             "&8&m+-------------------+",
             "",
-            "&a&l▼ &bData:",
-            "&f● &7Nick: &b%player_name%",
-            "&f● &7Rank: &b%vault_rank%",
-            "&f● &7Coins: &e%vault_eco_balance_formatted%",
+            "&a&l &bData:",
+            "&f &7Nick: &b%player_name%",
+            "&f &7Rank: &b%vault_rank%",
+            "&f &7Coins: &e%vault_eco_balance_formatted%",
             "",
-            "&a&l▼ &bExample:",
-            "&f● &7Lobby: &b#1",
-            "&f● &7Ping: &b%player_ping%",
-            "&f● &7Players: &b%bungee_total%",
+            "&a&l &bExample:",
+            "&f &7Lobby: &b#1",
+            "&f &7Ping: &b%player_ping%",
+            "&f &7Players: &b%bungee_total%",
             "",
-            "&f● &fIP: &bplay.yournetwork.com"
+            "&f &fIP: &bplay.yournetwork.com"
     ));
     }
 
