@@ -23,7 +23,7 @@ public class AnimatedConfigurationImpl extends SafeYamlSerializable {
     public static final AnimatedConfigurationImpl IMP = new AnimatedConfigurationImpl();
 
     public AnimatedConfigurationImpl() {
-        super(Paths.get("config.yml"), BUKKIT_CONFIG);
+        super(Paths.get("SternalBoard","animated.yml"), BUKKIT_CONFIG);
     }
 
     @Comment(value = {

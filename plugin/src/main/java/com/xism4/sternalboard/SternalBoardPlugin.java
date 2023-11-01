@@ -15,6 +15,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
+import java.nio.file.Files;
 import java.util.Objects;
 
 public class SternalBoardPlugin extends JavaPlugin {
@@ -32,16 +33,8 @@ public class SternalBoardPlugin extends JavaPlugin {
     public void onLoad() {
         StaticConfigurationImpl settings = new StaticConfigurationImpl();
         AnimatedConfigurationImpl animatedSettings = new AnimatedConfigurationImpl();
-        settings.reload(
-                this.getDataFolder().toPath()
-        );
+        settings.reload();
         animatedSettings.reload(
-                this.getDataFolder().toPath()
-        );
-
-        //keep for build now
-        this.animConfig = new BukkitConfiguration(
-                this, "animated-board"
         );
 
         setAnimateScoreboard(StaticConfigurationImpl.IMP.ANIMATED_BOARD);

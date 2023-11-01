@@ -25,7 +25,7 @@ public class StaticConfigurationImpl extends SafeYamlSerializable {
     public static final StaticConfigurationImpl IMP = new StaticConfigurationImpl();
 
     public StaticConfigurationImpl() {
-        super(Paths.get("config.yml"), BUKKIT_CONFIG);
+        super(Paths.get("SternalBoard", "config.yml"), BUKKIT_CONFIG);
     }
 
     @Comment(value = {
