@@ -1,6 +1,6 @@
 package com.xism4.sternalboard.commands;
 
-import com.xism4.sternalboard.BukkitConfigurationImpl;
+import com.xism4.sternalboard.StaticConfigurationImpl;
 import com.xism4.sternalboard.SternalBoardPlugin;
 import com.xism4.sternalboard.managers.animation.AnimationManager;
 import com.xism4.sternalboard.utils.TextUtils;
@@ -91,14 +91,14 @@ public class SternalCommand implements CommandExecutor {
 
     private void reloadSubcommand(CommandSender sender) {
         if (sender.hasPermission("sternalboard.reload")){
-            BukkitConfigurationImpl.IMP.reload();
+            StaticConfigurationImpl.IMP.reload();
             this.config = plugin.getConfig();
             plugin.setAnimateScoreboard(
-                    BukkitConfigurationImpl.IMP.ANIMATED_BOARD
+                    StaticConfigurationImpl.IMP.ANIMATED_BOARD
             );
             plugin.getScoreboardManager().reload();
             if (plugin.isAnimationEnabled()) {
-                BukkitConfigurationImpl.IMP.reload();
+                StaticConfigurationImpl.IMP.reload();
                 if (plugin.getAnimationManager() != null) {
                     plugin.getAnimationManager().reload();
                 } else {

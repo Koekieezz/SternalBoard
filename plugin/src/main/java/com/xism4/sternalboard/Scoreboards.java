@@ -11,8 +11,8 @@ public class Scoreboards {
             SternalBoardPlugin plugin, SternalBoard handler
     ) {
 
-       String title = BukkitConfigurationImpl.IMP.DEFAULT_SCOREBOARD_TITLE;
-       List<String> lines = new ArrayList<>(BukkitConfigurationImpl.IMP.SCOREBOARD_LINES);
+       String title = StaticConfigurationImpl.IMP.DEFAULT_SCOREBOARD_TITLE;
+       List<String> lines = new ArrayList<>(StaticConfigurationImpl.IMP.SCOREBOARD_LINES);
 
         if (title == null) {
             title = handler.getTitle();

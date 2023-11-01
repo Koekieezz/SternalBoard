@@ -1,6 +1,7 @@
 package com.xism4.sternalboard.managers.animation;
 
 import com.google.common.collect.Lists;
+import com.xism4.sternalboard.AnimatedConfigurationImpl;
 import com.xism4.sternalboard.SternalBoardHandler;
 import com.xism4.sternalboard.SternalBoardPlugin;
 import com.xism4.sternalboard.managers.ScoreboardManager;
@@ -13,6 +14,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.scheduler.BukkitScheduler;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class AnimationManager {
@@ -36,27 +38,22 @@ public class AnimationManager {
 
         this.taskIds = new ArrayList<>();
 
-        List<String> titleLines = config.getStringList("scoreboard-animated.title.lines");
+        List<String> titleLines = Collections.singletonList(AnimatedConfigurationImpl.IMP.ANIMATED_SCOREBOARD_TITLE);
         titleLines.replaceAll(TextUtils::colorize);
         this.title = titleLines.get(0);
 
         TitleUpdateTask titleUpdateTask = new TitleUpdateTask(plugin, this, titleLines);
         titleUpdateTask.runTaskTimerAsynchronously(
                 plugin,
-                config.getInt(
-                        "scoreboard-animated.title.update-rate"),
-                config.getInt(
-                        "scoreboard-animated.title.update-rate")
+                AnimatedConfigurationImpl.IMP.ANIMATED_SCOREBOARD_TITLE_UPDATE_RATE, //delay
+                AnimatedConfigurationImpl.IMP.ANIMATED_SCOREBOARD_TITLE_UPDATE_RATE //period
         );
         taskIds.add(titleUpdateTask.getTaskId()
         );
 
         List<String> linesList = Lists.newArrayList();
-        ConfigurationSection configSection = config.getConfigurationSection(
-                "scoreboard-animated.score-lines"
-        );
 
-        updateLines(configSection, linesList);
+        updateLines((ConfigurationSection) AnimatedConfigurationImpl.IMP.ANIMATED_SCOREBOARD_LINES, linesList);
 
         this.lines = linesList.toArray(new String[0]);
     }
@@ -75,7 +72,7 @@ public class AnimationManager {
             return;
         }
 
-        List<String> titleLines = config.getStringList("scoreboard-animated.title.lines");
+        List<String> titleLines = new ArrayList<>(Collections.singletonList(AnimatedConfigurationImpl.IMP.ANIMATED_SCOREBOARD_TITLE));
 
         titleLines.replaceAll(TextUtils::colorize);
 
@@ -84,11 +81,9 @@ public class AnimationManager {
         TitleUpdateTask titleUpdateTask = new TitleUpdateTask(plugin, this, titleLines);
         titleUpdateTask.runTaskTimerAsynchronously(
                 plugin,
-                config.getInt(
-                        "scoreboard-animated.title.update-rate"),
-                config.getInt(
-                        "scoreboard-animated.title.update-rate")
-        );
+                    AnimatedConfigurationImpl.IMP.ANIMATED_SCOREBOARD_TITLE_UPDATE_RATE,
+                    AnimatedConfigurationImpl.IMP.ANIMATED_SCOREBOARD_TITLE_UPDATE_RATE
+                );
         taskIds.add(titleUpdateTask.getTaskId()
         );
 

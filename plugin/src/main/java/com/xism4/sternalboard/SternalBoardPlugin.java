@@ -25,16 +25,26 @@ public class SternalBoardPlugin extends JavaPlugin {
     public AnimationManager animationManager;
     public BukkitConfiguration animConfig;
     public BukkitConfiguration config;
-    public boolean animateScoreboard;
+    public boolean animateScoreboard; //build
 
 
     @Override
     public void onLoad() {
-        BukkitConfigurationImpl settings = new BukkitConfigurationImpl();
-        settings.reload(this.getDataFolder().toPath());
-        this.animConfig = new BukkitConfiguration(this, "animated-board");
+        StaticConfigurationImpl settings = new StaticConfigurationImpl();
+        AnimatedConfigurationImpl animatedSettings = new AnimatedConfigurationImpl();
+        settings.reload(
+                this.getDataFolder().toPath()
+        );
+        animatedSettings.reload(
+                this.getDataFolder().toPath()
+        );
 
-        setAnimateScoreboard(BukkitConfigurationImpl.IMP.ANIMATED_BOARD);
+        //keep for build now
+        this.animConfig = new BukkitConfiguration(
+                this, "animated-board"
+        );
+
+        setAnimateScoreboard(StaticConfigurationImpl.IMP.ANIMATED_BOARD);
     }
 
     @Override
@@ -58,7 +68,7 @@ public class SternalBoardPlugin extends JavaPlugin {
     }
 
     public boolean isWorldEnabled() {
-        return BukkitConfigurationImpl.IMP.WORLD_BLACKLIST_ENABLED;
+        return StaticConfigurationImpl.IMP.WORLD_BLACKLIST_ENABLED;
     }
 
     public ScoreboardManager getScoreboardManager() {

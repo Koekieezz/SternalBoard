@@ -5,14 +5,13 @@ import net.elytrium.serializer.SerializerConfig;
 import net.elytrium.serializer.annotations.Comment;
 import net.elytrium.serializer.annotations.CommentValue;
 import net.elytrium.serializer.annotations.Transient;
-import org.checkerframework.checker.units.qual.C;
 
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-public class BukkitConfigurationImpl extends SafeYamlSerializable {
+public class StaticConfigurationImpl extends SafeYamlSerializable {
 
     @Transient
     private static final SerializerConfig BUKKIT_CONFIG = new SerializerConfig.Builder()
@@ -22,9 +21,9 @@ public class BukkitConfigurationImpl extends SafeYamlSerializable {
             .build();
 
 
-    public static final BukkitConfigurationImpl IMP = new BukkitConfigurationImpl();
+    public static final StaticConfigurationImpl IMP = new StaticConfigurationImpl();
 
-    public BukkitConfigurationImpl() {
+    public StaticConfigurationImpl() {
         super(Paths.get("config.yml"), BUKKIT_CONFIG);
     }
 

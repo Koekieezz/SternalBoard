@@ -1,6 +1,6 @@
 package com.xism4.sternalboard.managers;
 
-import com.xism4.sternalboard.BukkitConfigurationImpl;
+import com.xism4.sternalboard.StaticConfigurationImpl;
 import com.xism4.sternalboard.Scoreboards;
 import com.xism4.sternalboard.SternalBoard;
 import com.xism4.sternalboard.SternalBoardPlugin;
@@ -27,14 +27,14 @@ public class ScoreboardManager {
     }
 
     public void init() {
-        String scoreboardMode = BukkitConfigurationImpl.IMP.MODE.toUpperCase(Locale.ROOT);
-        int updateTime = BukkitConfigurationImpl.IMP.SCOREBOARD_INTERVAL_UPDATE;
-        BukkitConfigurationImpl.IMP.save();
+        String scoreboardMode = StaticConfigurationImpl.IMP.MODE.toUpperCase(Locale.ROOT);
+        int updateTime = StaticConfigurationImpl.IMP.SCOREBOARD_INTERVAL_UPDATE;
+        StaticConfigurationImpl.IMP.save();
 
         if (updateTime <= 0) {
-            BukkitConfigurationImpl.IMP.save();
+            StaticConfigurationImpl.IMP.save();
             updateTime = 20;
-            BukkitConfigurationImpl.IMP.save();
+            StaticConfigurationImpl.IMP.save();
         }
 
         if (plugin.isAnimationEnabled()) {
@@ -107,11 +107,11 @@ public class ScoreboardManager {
     }
 
     private void processPermissionScoreboard(SternalBoard handler) {
-        Set<String> permissions = BukkitConfigurationImpl.IMP.PERMISSION_SCOREBOARD_LINES;
+        Set<String> permissions = StaticConfigurationImpl.IMP.PERMISSION_SCOREBOARD_LINES;
 
         String permissionNode;
         for (String key : permissions) {
-            permissionNode = BukkitConfigurationImpl.IMP.NODE;
+            permissionNode = StaticConfigurationImpl.IMP.NODE;
             if (permissionNode == null) continue;
             if (handler.getPlayer().hasPermission(permissionNode)) {
                 break;
@@ -127,7 +127,7 @@ public class ScoreboardManager {
     public void setBoardAfterCheck(Player player) {
         ScoreboardManager manager = plugin.getScoreboardManager();
 
-        if (!BukkitConfigurationImpl.IMP.WORLD_BLACKLIST_ENABLED) {
+        if (!StaticConfigurationImpl.IMP.WORLD_BLACKLIST_ENABLED) {
             if (manager.getBoardsHandler().containsKey(player.getUniqueId())) {
                 return;
             }
@@ -136,7 +136,7 @@ public class ScoreboardManager {
         }
 
         //No need to check if world is null since player is always on a world
-        List<String> worldBlacklist = BukkitConfigurationImpl.IMP.WORLD_BLACKLIST;
+        List<String> worldBlacklist = StaticConfigurationImpl.IMP.WORLD_BLACKLIST;
 
 
         if (worldBlacklist.contains(player.getWorld().getName())) {
