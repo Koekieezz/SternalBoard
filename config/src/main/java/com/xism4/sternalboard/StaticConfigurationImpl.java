@@ -19,6 +19,7 @@ public class StaticConfigurationImpl extends SafeYamlSerializable {
             .setCommentValueIndent(1)
             .setFieldNameStyle(NameStyle.MACRO_CASE)
             .setNodeNameStyle(NameStyle.KEBAB_CASE)
+            .setAllowUnicode(true)
             .build();
 
 
